@@ -1,10 +1,8 @@
-using System.Collections;
-using System.Collections.Generic;
+using System;
 using UnityEngine;
-using static Bootstrapper;
 
-[System.Serializable]
-public class ResourceTimerData : MonoBehaviour
+[Serializable]
+public class ResourceTimerData
 {
     public ResourceType resourceType;
     public float enrichmentTime;

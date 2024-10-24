@@ -4,22 +4,32 @@ using UnityEngine;
 
 public class TimerDisplay : MonoBehaviour
 {
+    public ResourceTimerCollection resourceTimeData;
     public TMP_Text timerText;
+    public int index;
     private float timer;
+    private bool isDecay;
 
     private void Start()
     {
         timer = 0f;
-        StartCoroutine(UpdateTimer());
     }
 
-    private IEnumerator UpdateTimer()
+    private void Update()
     {
-        while (true)
+        if (isDecay == false)
         {
             timer += Time.deltaTime;
-            timerText.text = $"{timer:F2}";
-            yield return null;
+            if (timer > resourceTimeData.resourceTimers[index].enrichmentTime)
+            {
+                isDecay = true;
+                timer = resourceTimeData.resourceTimers[index].decayTime;
+            }
         }
+        else
+        {
+            timer -= Time.deltaTime;
+        }
+        timerText.text = $"{timer:F2}";
     }
 }

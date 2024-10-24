@@ -10,9 +10,15 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ad61fadba15afa24fbffe862749d25e2, type: 3}
-  m_Name: Uranium
+  m_Name: ResourceCollections
   m_EditorClassIdentifier: 
   resources:
   - resourceType: 0
+    inactiveSprite: {fileID: 21300000, guid: b2c4d3290b0690a4790ab7058aeb4a15, type: 3}
+    activeSprite: {fileID: 21300000, guid: 3964ec5d282e71f40b2838525382a9e5, type: 3}
+  - resourceType: 1
+    inactiveSprite: {fileID: 21300000, guid: 3eb31db3cfde8b743bc6ba4295a4d688, type: 3}
+    activeSprite: {fileID: 21300000, guid: 54999f53895117c4aa5caca6b44d5ca3, type: 3}
+  - resourceType: 2
     inactiveSprite: {fileID: 0}
     activeSprite: {fileID: 0}

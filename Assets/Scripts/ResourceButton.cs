@@ -1,28 +1,25 @@
 using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
-using static Bootstrapper;
 
 public class ResourceButton : MonoBehaviour
 {
+    public Image image;
     public ResourceType resourceType;
-    private ResourceData resourceData;
-    private float enrichmentTime;
-    private float decayTime;
+    public ResourceCollection resourceCollection;
+    public ResourceTimerCollection resourceTimeData;
+    public int index;
 
     private Button button;
 
     private void Start()
     {
-        resourceData = new ResourceData();
         button = GetComponent<Button>();
         Initialize();
     }
 
     private void Initialize()
     {
-        enrichmentTime = TimerService.Instance.GetEnrichmentTime(resourceType);
-        decayTime = TimerService.Instance.GetDecayTime(resourceType);
         button.onClick.AddListener(StartEnrichment);
     }
 
@@ -33,17 +30,17 @@ public class ResourceButton : MonoBehaviour
 
     private IEnumerator EnrichmentCoroutine()
     {
-        IconService.Instance.SetInactiveIcon(GetComponent<Image>(), resourceData.inactiveSprite);
+        IconService.Instance.SetInactiveIcon(image, resourceCollection.resources[index].inactiveSprite);
         button.interactable = false;
-        yield return new WaitForSeconds(enrichmentTime);
-        IconService.Instance.SetActiveIcon(GetComponent<Image>(), resourceData.activeSprite);
+        yield return new WaitForSeconds(resourceTimeData.resourceTimers[index].enrichmentTime);
+        IconService.Instance.SetActiveIcon(image, resourceCollection.resources[index].activeSprite);
         button.interactable = true;
         StartCoroutine(DecayCoroutine());
     }
 
     private IEnumerator DecayCoroutine()
     {
-        yield return new WaitForSeconds(decayTime);
+        yield return new WaitForSeconds(resourceTimeData.resourceTimers[index].decayTime);
         Game.Instance.GameOver();
     }
 }
