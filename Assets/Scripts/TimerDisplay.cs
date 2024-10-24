@@ -1,11 +1,10 @@
 using System.Collections;
-using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class TimerDisplay : MonoBehaviour
 {
-    public Text timerText;
+    public TMP_Text timerText;
     private float timer;
 
     private void Start()

@@ -1,5 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using static Bootstrapper;
@@ -7,6 +6,7 @@ using static Bootstrapper;
 public class ResourceButton : MonoBehaviour
 {
     public ResourceType resourceType;
+    private ResourceData resourceData;
     private float enrichmentTime;
     private float decayTime;
 
@@ -14,6 +14,7 @@ public class ResourceButton : MonoBehaviour
 
     private void Start()
     {
+        resourceData = new ResourceData();
         button = GetComponent<Button>();
         Initialize();
     }
@@ -32,10 +33,10 @@ public class ResourceButton : MonoBehaviour
 
     private IEnumerator EnrichmentCoroutine()
     {
-        IconService.Instance.SetInactiveIcon(transform, /* inactive sprite */);
+        IconService.Instance.SetInactiveIcon(GetComponent<Image>(), resourceData.inactiveSprite);
         button.interactable = false;
         yield return new WaitForSeconds(enrichmentTime);
-        IconService.Instance.SetActiveIcon(transform, /* active sprite */);
+        IconService.Instance.SetActiveIcon(GetComponent<Image>(), resourceData.activeSprite);
         button.interactable = true;
         StartCoroutine(DecayCoroutine());
     }

@@ -1,8 +1,7 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
-public class IconService : MonoBehaviour
+public class IconService
 {
     private static IconService instance;
 
@@ -18,13 +17,13 @@ public class IconService : MonoBehaviour
         }
     }
 
-    public void SetActiveIcon(Transform target, Sprite sprite)
+    public void SetActiveIcon(Image image, Sprite sprite)
     {
-
+        image.sprite = sprite;
     }
 
-    public void SetInactiveIcon(Transform target, Sprite sprite)
+    public void SetInactiveIcon(Image image, Sprite sprite)
     {
-
+        image.sprite = sprite;
     }
 }
