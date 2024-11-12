@@ -1,6 +1,5 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using Game;
 
 [CreateAssetMenu(fileName = "ResourceCollection", menuName = "ScriptableObjects/ResourceCollection", order = 1)]
 public class ResourceCollection : ScriptableObject
